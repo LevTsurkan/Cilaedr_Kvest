@@ -5,6 +5,7 @@ import time
 import random
 class GameState:
     def __init__(self):
+        self.r = 0
         self.location = 'prihogaya'
         self.e = 1                  
         self.propusk = True
@@ -94,9 +95,9 @@ def etag1(state: GameState):
             print('Что вы сделаете?')
             print('1: зальете в куллер мыло из колбы с надписью "Жи кое мы о".')
             print('2: вернетесь на 1 этаж.')
-            c = input().strip()
             l=0
             while l!=1:
+                c = input().strip()
                 if c=='1':
                     print("Вы заливаете мыло и оно пачкает вам руки. Вы отходите и ждете, пока что-нибудь произойдет.")
                     state.ruki="в мыле"
@@ -210,7 +211,7 @@ def lestnica(state: GameState):
         else:
             print('Неверный ввод. Выберите цифру.')
             state.location='lestnica'
-    if state.e==2 or state.e==4:
+    elif state.e==2 or state.e==4:
             print(f"Вы на лестничной площадке {state.e} этажа.")
             print('Что вы сделаете?')
             print(f'1: зайдете на {state.e} этаж.')
@@ -231,7 +232,7 @@ def lestnica(state: GameState):
             else:
                     print('Неверный ввод. Выберите 1 или 2.')
                     state.location='lestnica'
-    if state.e==3:
+    elif state.e==3:
             print("Вы на лестничной площадке 3 этажа.")
             print('Что вы сделаете?')
             print('1: зайдете на 3 этаж.')
@@ -243,7 +244,7 @@ def lestnica(state: GameState):
                         print("Дверь заперта, но вы открываете ее ключом и заходите на 3 этаж.")
                         state.key3=False
                         state.location='etag3'
-                    elif (not key3) and (not key35O):
+                    elif (not state.key3) and (not state.key35O):
                         print("Вы заходите на 3 этаж.")
                         state.location='etag3'
                     else:
@@ -260,7 +261,7 @@ def lestnica(state: GameState):
             else:
                     print('Неверный ввод. Выберите 1 или 2.')
                     state.location='lestnica'
-    if state.e==5:
+    elif state.e==5:
             print("Вы на лестничной площадке 5 этажа.")
             print('Что вы сделаете?')
             print('1: зайдете на 5 этаж.')
@@ -271,7 +272,7 @@ def lestnica(state: GameState):
                         print("Дверь заперта, но вы открываете ее ключом и заходите на 5 этаж.")
                         state.key5=False
                         state.location='etag5'
-                    elif (not state.key3) and (not state.key35O):
+                    elif (not state.key5) and (not state.key35O):
                         print("Вы заходите на 5 этаж.")
                         state.location='etag5'
                     else:
@@ -291,7 +292,7 @@ def zadniy_dvor(state: GameState):
     print('2: пойдете к лавочкам.')
     c = input().strip()
     if c == '1':
-        location='dvor'
+        state.location='dvor'
     elif c == '2':
         print("Вы подходите к лавочкам.")
         if state.key1O:
@@ -328,10 +329,10 @@ def zadniy_dvor(state: GameState):
                         state.lavochka=False
                         state.ruki="в крови"
                         state.location='zadniy_dvor'
-                        state.l=1
+                        l=1
                     elif c == '2':
                         print("Вы заходите на задний двор.")
-                        location='zadniy_dvor'
+                        state.location='zadniy_dvor'
                         l=1
                     else:
                         print('Неверный ввод. Выберите цифру.')
@@ -421,40 +422,44 @@ def etag2(state: GameState):
             state.location='etag2'
 def c201(state: GameState):
     print("Вы в 201 кабинете.")
-    if state.cat==1:
+    if state.cat == 1:
         print("Все парты сдвинуты к стене, а за учительским столом сидит Кот.")
         print("Здравствуй, Двуногий! Что тебе нужно?")
         print('1: "Я просто пришел осмотреться."')
         print('2: "Я просто пришел поздороваться. Привет, Кот!"')
-        if state.zavhoz=='жаба': print('3: "Ты можешь превратить завхоза обратно в человека?"')
-        if state.eda and state.zavhoz=='жаба': print('4: "Я пришел покормить тебя едой из столовой."') elif state.eda and state.zavhoz1='жаба': print('3: "Я пришел покормить тебя едой из столовой."') 
+        print('3: "Ты можешь превратить завхоза обратно в человека?"')
+        if state.eda:
+            print('4: "Я пришел покормить тебя едой из столовой."')
         c = input().strip()
-        if c== '1':
-                print('Кот: "А, ну пока!"')
-                print('Вы выходите на 2 этаж.')
-                state.location='etag2'
+        if c == '1':
+            print('Кот: "А, ну пока!"')
+            print('Вы выходите на 2 этаж.')
+            state.location = 'etag2'
         elif c == '2':
-                print('Кот: "Ты очень вежливый, держи ключ от столовой."')
-                print('Вы выходите на 2 этаж.')
-                state.keyS=True
-                state.location='etag2'
-        elif c== '3':
+            print('Кот: "Ты очень вежливый, держи ключ от столовой."')
+            print('Вы выходите на 2 этаж.')
+            state.keyS = True
+            state.location = 'etag2'
+        elif c == '3':
+            if state.zavhoz=='жаба':
                 print('Кот: "Могу. Все уже готово." Кот хитро ухмыляется и смотрит на тебя.')
-                state.zavhoz="человек"
-                print('Вы выходите на 2 этаж.')
-                state.location='etag2'
-        elif c== '4':
-                print('Кот: "Мяу, спасибо! Пока!" Кот исчезает с громким одобрительным "Мяууууууууууу!"')
-                state.cat=2
-                state.eda=False
-                print('Вы выходите на 2 этаж.')
-                state.location='etag2'
+                state.zavhoz = "человек"
+            else:
+                print('Кот:"Он не жаба чтобы его превращать. Пока!"')
+            print('Вы выходите на 2 этаж.')
+            state.location = 'etag2'
+        elif c == '4' and state.eda:
+            print('Кот: "Мяу, спасибо! Пока!" Кот исчезает с громким одобрительным "Мяууууууууууу!"')
+            state.cat = 2
+            state.eda = False
+            print('Вы выходите на 2 этаж.')
+            state.location = 'etag2'
         else:
-                print('Неверный ввод. Выберите цифру.')
-                state.location='c201'
+            print('Неверный ввод. Выберите цифру.')
+            state.location = 'c201'
     else:
         print("Здесь ничего нет. И вы выходите.")
-        state.location="etag2"
+        state.location = "etag2"
 def uchitelskaya(state: GameState):
     print("Вы в учительской. Здесь никого нет. Картина на стене сдвинута, и за ней виднеется проход в 207 кабинет(этот кабинет лаборантская).")
     print('Что вы сделаете?')
@@ -472,7 +477,8 @@ def uchitelskaya(state: GameState):
             state.location='uchitelskaya'
 def c207(state: GameState):
     print("Вы в 207 кабинете.")
-    if a:=random.randint(1,4)==1:
+    a = random.randint(1, 4)
+    if a == 1:
         print("За партой стоит Олег Сергеевич и что-то делает за компьютером.")
         time.sleep(1)
         print('Он поднимает на тебя глаза и кричит:"Что ты тут делаешь! Иди пиши объяснительную!')
@@ -609,15 +615,16 @@ def c401(state: GameState):
         else:
                 print('Неверный ввод. Выберите 1 или 2.')
                 state.location='c401'
-    print("Вы выходите, потому что тут ничего нет.")
-    state.location='etag4'
+    else:
+        print("Вы выходите, потому что тут ничего нет.")
+        state.location='etag4'
 def etag5(state: GameState):
     print("Вы на 5 этаже. В углу стоит пустая кошачья миска и упаковка кошачьего корма.")
-    if state.cat==0: print("Здесь бегает и громко мяучет кот.")
+    if state.cat==0 and state.zavhoz=='жаба': print("Здесь бегает и громко мяучет кот.")
     print('Что вы сделаете?')
     print('1: выйдете на лестницу.')
     print('2: осмотритесь.')
-    if state.cat==0: print('3: поймаете кота.')
+    if state.cat==0 and state.zavhoz=='жаба': print('3: поймаете кота.')
     c = input().strip()
     if c== '1':
             print("Вы выходите на лестницу.")
@@ -643,7 +650,7 @@ def etag5(state: GameState):
                         state.location='lestnica'
                     else:
                         print('Неверный ввод. Выберите 1 или 2.')
-    elif state.cat==0 and c == '3':
+    elif state.cat==0 and state.zavhoz=='жаба' and c == '3':
             print('Вы ловите кота и он перестает мяукать. Кот: "Зачем ты меня поймал?"')
             print('''           
        \`-._           __
@@ -694,6 +701,7 @@ def etag5(state: GameState):
                 elif c == '3':
                     print("Вы кусаете кота. Вы подавились шерстью кота и умерли, ибо нефиг жрать кота!!!")
                     state.location='end'
+                    l=1
                 else:
                     print('Неверный ввод. Выберите 1 или 2.')
     else:
