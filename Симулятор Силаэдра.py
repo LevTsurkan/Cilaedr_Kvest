@@ -4,6 +4,7 @@ import time
 import random
 from Функции import (location, propusk, key35O, start_background_music, prihogaya, etag1, etag2, etag3, etag4, etag5, c105, ohrana, lestnica, zadniy_dvor, dvor, uchitelskaya, c207, c401, tualet, boss, stolovaya, c201)
 pygame.mixer.init()
+state = GameState() 
 print('Добро пожаловать в текстовую квест-игру "Симулятор Силаэдра"!')
 print('Здесь вы будете перемещаться по комнатам и постепенно прояснять ситуацию. Пока у вас есть только пропуск. Удачи!')
 start_background_music()
