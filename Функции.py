@@ -24,13 +24,14 @@ ruki='чисты'             # Руки, изначально чисты, но 
 lavochka=True            # Лавочка, сначала нормальная, потом можно сломать
 cat=0                    # Кот, сначала сидит на 5 этаже, потом на 2 этаже, потом вовсе уходит из игры
 keyS=False               # ключ от столовой, изначально его нет
+r=0                      # Запускать ли музыку при входе на третй этаж
 def start_background_music():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     sound_file = os.path.join(script_dir, "фоновая музыка.mp3")
     pygame.mixer.music.load(sound_file)
     pygame.mixer.music.play(-1)
 def prihogaya():
-    global location
+    global location, propusk
     print('Вы находитесь в прихожей.')
     print('Вы подходите к турникетам, и на вас подозрительно смотрит охранница.')
     print('Что вы сделаете?')
@@ -213,7 +214,7 @@ def lestnica():
             print("Вы выходите во двор, и дверь за вами захлопывается.")
             location='zadniy_dvor'
         else:
-            print('Неверный ввод. Выберите 1 или 2.')
+            print('Неверный ввод. Выберите цифру.')
             location='lestnica'
     if e==2 or e==4:
             print(f"Вы на лестничной площадке {e} этажа.")
@@ -319,7 +320,7 @@ def zadniy_dvor():
                     location='zadniy_dvor'
                     l=1
                 else:
-                    print('Неверный ввод. Выберите 1 или 2.')
+                    print('Неверный ввод. Выберите цифру.')
         elif not key1O:
             if lavochka:
                 print('Что вы сделаете?')
@@ -341,7 +342,7 @@ def zadniy_dvor():
                         location='zadniy_dvor'
                         l=1
                     else:
-                        print('Неверный ввод. Выберите 1 или 2.')
+                        print('Неверный ввод. Выберите цифру.')
             else:
                 print("Вы любуетесь сломаной лавочкой, из которой вы освободили языческого демона.")
                 if a:=random.randint(1,4)==1 and zavhoz=="жив":
@@ -426,7 +427,7 @@ def etag2():
             print("Вы заходите в 201 кабинет.")
             location='c201'
     else:
-            print('Неверный ввод. Выберите 1 или 2.')
+            print('Неверный ввод. Выберите цифру.')
             location='etag2'
 def c201():
     global location, cat, keyS, zavhoz, eda
@@ -444,7 +445,7 @@ def c201():
                 print('Вы выходите на 2 этаж.')
                 location='etag2'
         elif c == '2':
-                print('Кот: "Ты очень вежливый держи ключ от столовой."')
+                print('Кот: "Ты очень вежливый, держи ключ от столовой."')
                 print('Вы выходите на 2 этаж.')
                 keyS=True
                 location='etag2'
@@ -502,7 +503,7 @@ def c207():
         print("Вдруг компьютер выключается вы в испуге выбегаете в учительскую, а из нее на второй этаж.")
         location='etag2'
 def etag3():
-    global location
+    global location, r, key
     if r==1: start_background_music()
     print("Вы на 3 этаже. Из единственной двери доносятся звуки похожие на дыхание.")
     print('Что вы сделаете?')
@@ -524,9 +525,9 @@ def etag3():
             location='lestnica' 
     else:
             print('Неверный ввод. Выберите 1 или 2.')
-            location='etag4'
+            location='etag3'
 def boss():
-    global location, otvertka, HP, HPM
+    global location, otvertka, HP, HPM, r
     pygame.mixer.music.pause()
     script_dir = os.path.dirname(os.path.abspath(__file__))
     sound_file = os.path.join(script_dir, "босс.mp3")
@@ -714,7 +715,7 @@ def etag5():
                 else:
                     print('Неверный ввод. Выберите 1 или 2.')
     else:
-            print('Неверный ввод. Выберите 1 или 2.')
+            print('Неверный ввод. Выберите цифру.')
             location='etag5'
 def tualet():
     global location, milo, ruki
