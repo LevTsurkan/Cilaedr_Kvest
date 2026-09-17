@@ -1,9 +1,9 @@
 import pygame
 import os
-pygame.mixer.init()
 import time
 import random
-from "Функции.py" import *
+from Функции import *
+pygame.mixer.init()
 print('Добро пожаловать в текстовую квест-игру "Симулятор Силаэдра"!')
 print('Здесь вы будете перемещаться по комнатам и постепенно прояснять ситуацию. Пока у вас есть только пропуск. Удачи!')
 start_background_music()
