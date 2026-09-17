@@ -2,50 +2,61 @@ import pygame
 import os
 import time
 import random
-from Функции import (location, propusk, key35O, start_background_music, prihogaya, etag1, etag2, etag3, etag4, etag5, c105, ohrana, lestnica, zadniy_dvor, dvor, uchitelskaya, c207, c401, tualet, boss, stolovaya, c201)
+
 pygame.mixer.init()
-state = GameState() 
+
+from Функции import (
+    GameState,
+    start_background_music,
+    prihogaya, etag1, etag2, etag3, etag4, etag5,
+    c105, ohrana, lestnica, zadniy_dvor, dvor,
+    uchitelskaya, c207, c401, tualet, boss, stolovaya, c201
+)
+
+state = GameState()                       
+
 print('Добро пожаловать в текстовую квест-игру "Симулятор Силаэдра"!')
 print('Здесь вы будете перемещаться по комнатам и постепенно прояснять ситуацию. Пока у вас есть только пропуск. Удачи!')
 start_background_music()
-while location != 'end':
-    location=state.location
-    if location=='prihogaya':
-        prihogaya()
-    if location=='etag1':
-        etag1()
-    if location=='etag2':
-        etag2()
-    if location=='etag3':
-        etag3()
-    if location=='etag4':
-        etag4()
-    if location=='etag5':
-        etag5()
-    if location=='c105':
-        c105()
-    if location=='ohrana':
-        ohrana()
-    if location=='lestnica':
-        lestnica()
-    if location=='zadniy_dvor':
-        zadniy_dvor()
-    if location=='dvor':
-        dvor()
-    if location=='uchitelskaya':
-        uchitelskaya()
-    if location=='c207':
-        c207()
-    if location=='c401':
-        c401()
-    if location=='tualet':
-        tualet()
-    if location=='boss':
-        boss()
-    if location=='stolovaya':
-        stolovaya()
-    if location=='c201':
-        c201()
+
+while state.location != 'end':         
+    loc = state.location
+    if loc == 'prihogaya':
+        prihogaya(state)          
+    elif loc == 'etag1':
+        etag1(state)
+    elif loc == 'etag2':
+        etag2(state)
+    elif loc == 'etag3':
+        etag3(state)
+    elif loc == 'etag4':
+        etag4(state)
+    elif loc == 'etag5':
+        etag5(state)
+    elif loc == 'c105':
+        c105(state)
+    elif loc == 'ohrana':
+        ohrana(state)
+    elif loc == 'lestnica':
+        lestnica(state)
+    elif loc == 'zadniy_dvor':
+        zadniy_dvor(state)
+    elif loc == 'dvor':
+        dvor(state)
+    elif loc == 'uchitelskaya':
+        uchitelskaya(state)
+    elif loc == 'c207':
+        c207(state)
+    elif loc == 'c401':
+        c401(state)
+    elif loc == 'tualet':
+        tualet(state)
+    elif loc == 'boss':
+        boss(state)
+    elif loc == 'stolovaya':
+        stolovaya(state)
+    elif loc == 'c201':
+        c201(state)
+
 print("Конец.")
 print("Игру написал Лев Цуркань.")
-
