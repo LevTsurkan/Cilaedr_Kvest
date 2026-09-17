@@ -8,6 +8,7 @@ print('Добро пожаловать в текстовую квест-игру
 print('Здесь вы будете перемещаться по комнатам и постепенно прояснять ситуацию. Пока у вас есть только пропуск. Удачи!')
 start_background_music()
 while location != 'end':
+    location=state.location
     if location=='prihogaya':
         prihogaya()
     if location=='etag1':
