@@ -635,7 +635,7 @@ def etag5(state: GameState):
                 print('Что вы сделаете?')
                 print('1: вставите пропуск. ')
                 print('2: выйдете на лестницу.')
-                l=0
+                l=1
                 while l!=1:
                     c = input().strip()
                     if c == '1':
