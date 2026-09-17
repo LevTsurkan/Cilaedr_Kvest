@@ -143,7 +143,7 @@ def etag1():
         print('Неверный ввод. Выберите цифру')
         location='etag1'
 def stolovaya():
-    global zavhoz, location
+    global zavhoz, location, eda
     print("Вы в столовой.")
     if zavhoz=="человек":
         print("Завхоз выгоняет вас отсюда.")
@@ -433,7 +433,7 @@ def etag2():
             print('Неверный ввод. Выберите 1 или 2.')
             location='etag2'
 def c201():
-    global location, cat, keyS, zavhoz
+    global location, cat, keyS, zavhoz, eda
     print("Вы в 201 кабинете.")
     if cat==1:
         print("Все парты сдвинуты к стене, а за учительским столом сидит Кот.")
@@ -465,7 +465,7 @@ def c201():
                 location='etag2'
         else:
                 print('Неверный ввод. Выберите цифру.')
-                location='с201'
+                location='c201'
     else:
         print("Здесь ничего нет. И вы выходите.")
         location="etag2"
