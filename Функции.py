@@ -3,28 +3,27 @@ import os
 pygame.mixer.init()
 import time
 import random
-location = 'prihogaya'
-propusk = True
-key35O = True
-keyO = True
-key1O = True
-key5 = False
-key3 = False
-key = False
-otvertka = False
-key1 = False
-obyasnitelnaya = 0
-e=1
-milo=0
-HP=100
-HPM=100
-r=0
-eda=False
-zavhoz="человек"
-ruki='чисты'
-lavochka=True
-cat=0
-keyS=False
+location = 'prihogaya'   # Локация, изначально она прихожая
+propusk = True           # Пропуск, изначально он есть
+key35O = True            # Наличие ключей от 3 и 5 этажей и отвертки в комнате охраны
+keyO = True              # Наличие ключа от комнаты с боссом на 5 этаже
+key1O = True             # Наличие ключа от комнаты охраны на лавочке
+key5 = False             # ключ от 5 этажа, изначально его нет
+key3 = False             # ключ от 3 этажа, изначально его нет
+key = False              # ключ от комнаты с боссом, изначально его нет
+otvertka = False         # отвертка, изначально ее нет и она не пригодилась в текущей версии игры
+key1 = False             # ключ от комнаты охраны, изначально его нет
+obyasnitelnaya = 0       # кол-во объяснительных, изначально 0
+e=1                      # этаж, нужен для лестницы
+milo=0                   # мыло, сначала его нет, потом будет только бутылка, потом заполненая бутылка, потом она будет уже не нужна
+HP=100                   # HP персонажа, изначально 100
+HPM=100                  # HP монстра, изначально 100
+eda=False                # Еда из столовой, изначально у персонажа ее нет
+zavhoz="человек"         # Завхоз, изначально человек, но его можно превратить в жабу
+ruki='чисты'             # Руки, изначально чисты, но могут перепачкаться в крови и придется мыть их в туалете
+lavochka=True            # Лавочка, сначала нормальная, потом можно сломать
+cat=0                    # Кот, сначала сидит на 5 этаже, потом на 2 этаже, потом вовсе уходит из игры
+keyS=False               # ключ от столовой, изначально его нет
 def start_background_music():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     sound_file = os.path.join(script_dir, "фоновая музыка.mp3")
@@ -59,7 +58,7 @@ def prihogaya():
             print('Неверный ввод. Выберите 1 или 2.')
             location='prihogaya'  
 def etag1():
-    global location, milo, zavhoz, ruki, key1
+    global location, milo, zavhoz, ruki, key1, keyS
     print('Вы на первом этаже. Здесь как обычно многолюдно, но не очень, и все немного притихшие.')
     print('Что вы сделаете?')
     print('1: пойдете в 105 кабинет.')
